@@ -1,6 +1,6 @@
 package com.github.maksymrybak.scaladesignpatterns.routes
 
-import akka.http.scaladsl.server.Directives.{as, complete, entity, pathEndOrSingleSlash, pathPrefix, post}
+import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.github.maksymrybak.scaladesignpatterns.model.Model._
 import com.github.maksymrybak.scaladesignpatterns.services._
@@ -8,6 +8,8 @@ import com.github.maksymrybak.scaladesignpatterns.services._
 import scala.concurrent.Future
 
 trait UserRoute {
+  /** Self type annotation */
+  self: UserServiceComponent =>
 
   private val USER_API = "user"
 
@@ -23,8 +25,13 @@ trait UserRoute {
           respondWith(createUserResult)
 
         }
-
-      }
-
+      } ~
+        path(JavaUUID) { id => {
+            get {
+              val readResult = read(id)
+              respondWith(readResult)
+            }
+          }
+        }
     }
 }
