@@ -2,6 +2,8 @@
 lazy val AKKA_VERSION       = "2.6.14"
 lazy val AKKA_HTTP_VERSION  = "10.2.4"
 lazy val SCALATEST_VERSION  = "3.2.7"
+lazy val SLICK_VERSION      = "3.3.3"
+lazy val PGRES_VERSION      = "42.3.6"
 
 lazy val root = (project in file("."))
   .settings(
@@ -16,6 +18,11 @@ lazy val root = (project in file("."))
         "com.typesafe.akka"     %% "akka-stream"          % AKKA_VERSION,
         "com.typesafe.akka"     %% "akka-http"            % AKKA_HTTP_VERSION,
         "com.typesafe.akka"     %% "akka-http-spray-json" % AKKA_HTTP_VERSION,
+
+        /* Database Dependencies */
+        "com.typesafe.slick"    %% "slick"                % SLICK_VERSION,
+        "com.typesafe.slick"    %% "slick-hikaricp"       % SLICK_VERSION,
+        "org.postgresql"         % "postgresql"           % PGRES_VERSION,
 
         /* Test Dependencies */
         "org.scalactic"         %% "scalactic"            % SCALATEST_VERSION,
